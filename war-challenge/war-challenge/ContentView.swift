@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // Property wrapper @State:
+    // @State means that you can change the data of the variable and all inside viewport any references to @State variable will get notified when value is changed, rebuilding itself ( like setState() in flutter)
+    @State private var playerCard = "card5" // @State will allow us to update the value in the future
+    @State private var cpuCard = "card9"
+    @State private var playerScore = 0
+    @State private var cpuScore = 0
+    
     var body: some View {
         ZStack {
             // Background
-            Image("background").resizable()
-                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            Image("background").resizable().ignoresSafeArea()
             
             // Game UI
             VStack(alignment: .center) {
@@ -22,18 +29,30 @@ struct ContentView: View {
                 
                 // Cards
                 HStack(spacing: 60.0) {
-                    // Card 1
-                    Image("card3")
+                    // Player Card
+                    Image(playerCard)
                         .cornerRadius(6.0)
                     
-                    // Card 2
-                    Image("card4")
+                    // CPU Card
+                    Image(cpuCard)
                         .cornerRadius(6.0)
                 }
                 Spacer()
                 
                 // Deal Button
-                Button(action: {}, label: {
+                Button(action: {
+                    // Generate a random number between 2 and 14
+                    let playerRand = Int.random(in: 2...14)
+                    let cpuRand = Int.random(in: 2...14)
+                    
+                    // Update the cards
+                    playerCard = "card" + String(playerRand)
+                    cpuCard = "card12" + String(cpuRand)
+                    
+                    // Update the score
+                    //playerScore += 1
+                    //cpuScore += 1
+                }, label: {
                     Image("dealbutton")
                 })
                 
@@ -44,12 +63,12 @@ struct ContentView: View {
                     VStack(spacing:10.0){
                         Text("Player")
                             .fontWeight(.bold).padding(.bottom,10.0)
-                        Text("0").font(.title).fontWeight(.semibold)
+                        Text(String(playerScore)).font(.title).fontWeight(.semibold)
                     }
                     VStack(spacing:10.0){
                         Text("CPU")
                             .fontWeight(.bold).padding(.bottom,10.0)
-                        Text("0").font(.title).fontWeight(.semibold)
+                        Text(String(cpuScore)).font(.title).fontWeight(.semibold)
                     }
                 }.foregroundColor(.white)
                 Spacer()
