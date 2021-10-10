@@ -33,7 +33,10 @@ struct ContentView: View {
                 Spacer()
                 
                 // Deal Button
-                Image("dealbutton")
+                Button(action: {}, label: {
+                    Image("dealbutton")
+                })
+                
                 Spacer()
                 
                 // Player and CPU scores
