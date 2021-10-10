@@ -47,11 +47,16 @@ struct ContentView: View {
                     
                     // Update the cards
                     playerCard = "card" + String(playerRand)
-                    cpuCard = "card12" + String(cpuRand)
+                    cpuCard = "card" + String(cpuRand)
                     
                     // Update the score
-                    //playerScore += 1
-                    //cpuScore += 1
+                    if playerRand > cpuRand{
+                        playerScore += 1
+                    } else if cpuRand > playerRand {
+                        cpuScore += 1
+                    } else{
+                        
+                    }
                 }, label: {
                     Image("dealbutton")
                 })
