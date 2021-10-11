@@ -11,6 +11,8 @@
 		E06B53A52714796200C0105F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B53A42714796200C0105F /* ContentView.swift */; };
 		E06B53A72714796400C0105F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B53A62714796400C0105F /* Assets.xcassets */; };
 		E06B53AA2714796400C0105F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E06B53A92714796400C0105F /* Preview Assets.xcassets */; };
+		E06B53B12714CB5A00C0105F /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B53B02714CB5A00C0105F /* StoriesView.swift */; };
+		E06B53B32714CBBF00C0105F /* FBPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B53B22714CBBF00C0105F /* FBPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		E06B53A42714796200C0105F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E06B53A62714796400C0105F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E06B53A92714796400C0105F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E06B53B02714CB5A00C0105F /* StoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
+		E06B53B22714CBBF00C0105F /* FBPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				E06B53A42714796200C0105F /* ContentView.swift */,
 				E06B53A62714796400C0105F /* Assets.xcassets */,
 				E06B53A82714796400C0105F /* Preview Content */,
+				E06B53B02714CB5A00C0105F /* StoriesView.swift */,
+				E06B53B22714CBBF00C0105F /* FBPostView.swift */,
 			);
 			path = facebook_ui;
 			sourceTree = "<group>";
@@ -137,8 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06B53B32714CBBF00C0105F /* FBPostView.swift in Sources */,
 				E06B53A52714796200C0105F /* ContentView.swift in Sources */,
 				E06B53A32714796200C0105F /* facebook_uiApp.swift in Sources */,
+				E06B53B12714CB5A00C0105F /* StoriesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

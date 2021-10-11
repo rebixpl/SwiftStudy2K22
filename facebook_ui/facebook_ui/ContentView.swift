@@ -7,11 +7,23 @@
 
 import SwiftUI
 
+struct FBPostModel: Hashable {
+    let name:String
+    let post:String
+    let imageName:String
+}
+
 struct ContentView: View {
     
     @State var text:String = ""
     
     let stories = ["story1", "story2", "story3", "story1", "story2", "story3"]
+    
+    let posts: [FBPostModel] = [
+        FBPostModel(name: "Elon Musk", post: "Falcon about to launch Dragon to @Space_Station", imageName: "person1"),
+        FBPostModel(name: "Mariusz Pudzianowski", post: "Poland’s cult icon who won the World’s Strongest Man competition five times.", imageName: "person3"),
+        FBPostModel(name: "Steve Jobs", post: "Jobs stormed into a meeting and started shouting that they were “fucking dickless assholes.\" The company ended up getting the chips to Apple on time, and its executives made jackets that boasted on the back, “Team FDA.\"", imageName: "person2")
+    ]
     
     let facebookBlue = UIColor(red: 23/255.0,
                                green: 120/255.0,
@@ -42,96 +54,18 @@ struct ContentView: View {
                 
                 ScrollView(.vertical){
                     VStack{
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack(spacing: 12.0){
-                                ForEach(stories, id: \.self) { name in
-                                    Image(name)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 140, height: 200, alignment: .center)
-                                        .background(Color.red)
-                                        .clipped()
-                                }
-                            }.padding(.all)
-                        }
+                        StoriesView(stories: stories)
                         
-                        FBPost(name: "Elon Musk", post: "Falcon about to launch Dragon to @Space_Station", imageName: "person1")
-                        Spacer()
-                        FBPost(name: "Mariusz Pudzianowski", post: "Poland’s cult icon who won the World’s Strongest Man competition five times.", imageName: "person3")
-                        Spacer()
-                        FBPost(name: "Steve Jobs", post: "Jobs stormed into a meeting and started shouting that they were “fucking dickless assholes.\" The company ended up getting the chips to Apple on time, and its executives made jackets that boasted on the back, “Team FDA.\"", imageName: "person2")
-                        Spacer()
+                        ForEach(posts, id: \.self) {model in
+                            FBPost(model: model)
+                            Spacer()
+                        }
                     }
                 }
             }
             
             Spacer()
         }
-    }
-}
-
-struct FBPost: View {
-
-    let name:String
-    let post:String
-    let imageName:String
-    
-    var body: some View {
-        VStack{
-            // Author account and time
-            HStack {
-                    Image(imageName)
-                        .resizable()
-                        .frame(width: 50, height: 50, alignment: .center)
-                        .aspectRatio(contentMode: .fill)
-                        .cornerRadius(26.0)
-                    VStack {
-                        HStack {
-                            Text(name)
-                                .foregroundColor(.blue)
-                                .font(.system(size: 18, weight: .semibold, design: .default))
-                            Spacer()
-                        }
-                        HStack {
-                            Text("12 minutes ago")
-                                .foregroundColor(.secondary)
-                            Spacer()
-                        }
-                    
-                 }
-                Spacer()
-            }
-            Spacer()
-            // Post
-            HStack{
-                    Text(post)
-                        .font(.system(size: 24, weight: .regular, design: .default))
-                    .multilineTextAlignment(.leading)
-                Spacer()
-            }
-            // Like, comment, share buttons
-            HStack{
-                Button(action: {
-                    
-                }, label: {
-                    Text("Like")
-                })
-                Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    Text("Comment")
-                })
-                Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    Text("Share")
-                })
-            }.padding(.all, 10.0)
-        }.padding(.all, 16.0)
-            .background(Color(.systemBackground))
-            .cornerRadius(7.0)
     }
 }
 
