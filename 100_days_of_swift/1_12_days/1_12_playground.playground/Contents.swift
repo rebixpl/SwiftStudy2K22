@@ -166,3 +166,113 @@ func sayHello(to name: String){
 }
 
 sayHello(to: "Richard")
+
+// Omitting parameter labels:
+func greet(_ person: String){
+    print("Hello, \(person)")
+}
+
+greet("Jake")
+
+// Default parameters
+func greet(_ person: String, nicely: Bool = true){
+    if nicely {
+        print("Hello, \(person)!")
+    } else {
+        print("Oh no, it's \(person) again...")
+    }
+}
+
+greet("Taylor")
+greet("Taylor", nicely: false)
+
+// Variadic functions
+func square(numbers: Int...){
+    for number in numbers{
+        print("\(number) squared is \(number * number)")
+    }
+}
+
+square(numbers: 1, 2, 3, 4, 5)
+
+// Throwing functions
+enum PasswordError: Error {
+    case obvious
+}
+
+func checkPassword(_ password: String) throws -> Bool {
+    if password == "admin1234"{
+        throw PasswordError.obvious
+    }
+    
+    return true
+}
+
+do {
+    try checkPassword("admin1234")
+    print("Correct Password")
+} catch {
+    print("You can't use that password!")
+}
+
+// Inout parameters
+func doubleInPlace(_ number: inout Int){
+    number *= 2
+}
+
+var myNum = 10
+doubleInPlace(&myNum)
+print(myNum)
+
+// Closures
+let driving = {
+    print("Let's go!")
+}
+
+driving()
+
+let driving2 = {
+    (place : String) in
+    print("Less go to \(place)")
+}
+
+driving2("Africa")
+
+// Returning values from a closures
+let drivingWithReturn = {(place: String) -> String in
+    return "I'm going to \(place) in my car"
+}
+
+let message = drivingWithReturn("London")
+
+print(message)
+
+// Closures as parameters
+let drivingg = {
+    print("I'm driving in my car")
+}
+
+func travel(action: () -> Void) {
+    print("I'm getting ready to go.")
+    action()
+    print("I arrived!")
+}
+
+travel(action: drivingg)
+
+print("")
+
+// Trailing closure syntax
+func travel3(action: () -> Void) {
+    print("I'm getting ready to go.")
+    action()
+    print("I arrived!")
+}
+
+// normal syntax
+travel3(action: { print("I'm driving in my car") })
+
+// Trailing closure syntax
+travel3 {
+    print("I'm driving in my car")
+}
