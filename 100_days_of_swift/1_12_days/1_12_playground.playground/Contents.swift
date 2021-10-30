@@ -276,3 +276,85 @@ travel3(action: { print("I'm driving in my car") })
 travel3 {
     print("I'm driving in my car")
 }
+
+print("")
+
+// When would you use closures with return values as parameters to a function?
+func reduce(_ values: [Int], closure: (Int,Int) -> Int ) -> Int {
+    var current = values[0]
+    
+    for value in values[1...] {
+        current = closure(current, value)
+    }
+    
+    return current
+}
+
+let sum = reduce([12,8,32,20]) {
+    (var1: Int, var2: Int) -> Int in
+    var1 + var2
+}
+
+let values: [Int] = [23,Int(sum / 10),11,9]
+
+let multiplied = reduce(values){
+    (var1: Int, var2: Int) -> Int in
+    var1 * var2
+}
+
+print(sum)
+print(multiplied)
+
+// Shorthand parameter names
+let sumAndDivide = reduce(values){
+    ($0 + $1) / 2
+}
+
+print(sumAndDivide)
+
+// Returning closures from functions
+func travel() -> (String) -> Void{
+    return {
+        print("I'm going to \($0)")
+//        (destination: String) in
+//        print("I'm going to \(destination)")
+    }
+}
+
+let result2 = travel()
+result2("Pakistan")
+
+// ------
+func makeRecorder(media: String) -> () -> String {
+    switch media {
+    case "podcast":
+        return {
+            "I'm recording a podcast!"
+        }
+    default:
+        return {
+            "I'm recording a video!"
+        }
+    }
+}
+
+let recorder = makeRecorder(media: "podcast")
+print(recorder())
+
+// Capturing values
+func travel3() -> (String) -> Void {
+    var counter = 1
+    
+    return {
+        print("\(counter). I'm going to \($0)")
+        counter += 1
+    }
+}
+
+let result3 = travel3()
+result3("London")
+result3("London")
+result3("London")
+result3("London")
+
+
