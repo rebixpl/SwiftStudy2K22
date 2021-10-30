@@ -358,3 +358,69 @@ result3("London")
 result3("London")
 
 
+// Structs
+// Computed properties
+struct Sport {
+    var name: String // Stored property
+    var isOlympicSport : Bool
+    
+    // Computed property
+    var olympicStatus : String {
+        if isOlympicSport {
+            return "\(name) is an Olympic sport"
+        } else {
+            return "\(name) is not an Olympic sport"
+        }
+    }
+}
+
+let chessBoxing = Sport(name: "Chessboxing", isOlympicSport: false)
+
+print(chessBoxing.olympicStatus)
+
+// Property Observers
+struct Progress {
+    var task: String
+    var amount: Int {
+        didSet {
+            print("didSet:")
+            print("\(task) is now \(amount)% complete \n")
+        }
+        willSet{
+            print("willSet:")
+            print("\(task) is now \(amount)% complete \n")
+        }
+    }
+}
+
+var progress = Progress(task: "Loading data...", amount: 0)
+progress.amount = 30
+progress.amount = 80
+progress.amount = 100
+
+// Methods
+struct City {
+    // Property
+    var population : Int // Stored property
+    
+    // Method
+    func collectTaxes() -> Int {
+        return population * 1000
+    }
+}
+
+let london = City(population: 9_000_000)
+print(london.collectTaxes())
+
+// Mutating methods
+struct Person {
+    var name: String
+    
+    mutating func makeAnonymous(){
+        name = "Anonymous"
+    }
+}
+
+var person2 = Person(name: "Ed")
+person2.makeAnonymous()
+print(person2.name)
